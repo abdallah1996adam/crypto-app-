@@ -2,6 +2,7 @@ import React from "react";
 import millify from "millify";
 import { Statistic, Typography, Row, Col } from "antd";
 import { Link } from "react-router-dom";
+import { useGetCryptosQuery } from "../../services/crypyoApi";
 
 export const Home = () => {
   return (
