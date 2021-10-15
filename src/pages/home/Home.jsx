@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import { useGetCryptosQuery } from "../../services/crypyoApi";
 import CryptoCrunnencies from "../cryptoCurrencies/CryptoCrunnencies";
 import { News } from "..";
+import { Loader } from "../../components";
 
 export const Home = () => {
   const { data, isFetching } = useGetCryptosQuery(10);
 
-  if (isFetching) return "loading..........";
+  if (isFetching) return <Loader/>
 
   const globalStats = data?.data?.stats;
   return (

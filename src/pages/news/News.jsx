@@ -6,6 +6,8 @@ import Text from "antd/lib/typography/Text";
 import { useGetCryptoNewsQuery } from "../../services/cryptoNewsApi";
 import { useGetCryptosQuery } from "../../services/crypyoApi";
 
+import { Loader } from "../../components";
+
 const { Option } = Select;
 
 export const News = ({ simplified }) => {
@@ -16,8 +18,8 @@ export const News = ({ simplified }) => {
     newsCategory,
     count: simplified ? 6 : 50,
   });
-  if (!coinsNews?.value) return "loading.............";
-  
+  if (!coinsNews?.value) return <Loader />;
+
   const demoImage =
     "https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News";
 

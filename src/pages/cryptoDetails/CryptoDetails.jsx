@@ -14,28 +14,29 @@ import {
   NumberOutlined,
   ThunderboltOutlined,
 } from "@ant-design/icons";
+
 import {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
 } from "../../services/crypyoApi";
 
-// import Loader from './Loader';
-import { LineChart } from "../../components";
+import { LineChart, Loader } from "../../components";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  const [timePeriod, setTimePeriod] = useState("7d");
+  const [timeperiod, setTimeperiod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({
     coinId,
-    timePeriod,
+    timeperiod,
   });
-
-  if (isFetching) return "loading.............";
   const cryptoDetails = data?.data?.coin;
+
+  if (isFetching) return <Loader />;
+
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
   const stats = [
@@ -109,7 +110,7 @@ const CryptoDetails = () => {
         defaultValue="7d"
         className="select-timeperiod"
         placeholder="Select Timeperiod"
-        onChange={(value) => setTimePeriod(value)}
+        onChange={(value) => setTimeperiod(value)}
       >
         {time.map((date) => (
           <Option key={date}>{date}</Option>

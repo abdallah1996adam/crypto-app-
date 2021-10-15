@@ -3,6 +3,7 @@ import millify from "millify";
 import { Link } from "react-router-dom";
 import { Row, Card, Input, Col } from "antd";
 import { useGetCryptosQuery } from "../../services/crypyoApi";
+import { Loader } from "../../components";
 
 const CryptoCrunnencies = ({ simplified }) => {
   const count = simplified ? 10 : 100;
@@ -18,7 +19,7 @@ const CryptoCrunnencies = ({ simplified }) => {
     setCryptos(filtredCoin);
   }, [searchCoin, cryptoList]);
 
-  if (isFetching) return "loading.......";
+  if (isFetching) return <Loader/>;
 
   return (
     <>
