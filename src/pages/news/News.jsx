@@ -16,7 +16,7 @@ export const News = ({ simplified }) => {
 
   const { data: coinsNews } = useGetCryptoNewsQuery({
     newsCategory,
-    count: simplified ? 6 : 50,
+    count: simplified ? 6 : 20,
   });
   if (!coinsNews?.value) return <Loader />;
 

@@ -6,7 +6,7 @@ import { useGetCryptosQuery } from "../../services/crypyoApi";
 import { Loader } from "../../components";
 
 const CryptoCrunnencies = ({ simplified }) => {
-  const count = simplified ? 1 : 100;
+  const count = simplified ? 10 : 100;
   const [searchCoin, setSearchCoin] = useState("");
   const { data: cryptoList, isFetching } = useGetCryptosQuery(count);
   const [crypto, setCryptos] = useState([]);
@@ -19,7 +19,7 @@ const CryptoCrunnencies = ({ simplified }) => {
     setCryptos(filtredCoin);
   }, [searchCoin, cryptoList]);
 
-  if (isFetching) return <Loader/>;
+  if (isFetching) return <Loader />;
 
   return (
     <>
@@ -38,7 +38,13 @@ const CryptoCrunnencies = ({ simplified }) => {
             <Link to={`/crypto/${coin.id}`}>
               <Card
                 title={`${coin.rank}. ${coin.name}`}
-                extra={<img className="crypto-image" alt="crypto" src={coin.iconUrl} />}
+                extra={
+                  <img
+                    className="crypto-image"
+                    alt="crypto"
+                    src={coin.iconUrl}
+                  />
+                }
                 hoverable
               >
                 <p>Price: {millify(coin.price)}</p>
